@@ -1,17 +1,25 @@
 #root {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 0%;
+    margin: 0%;
+
 }
 
 #left-div {
-    background-color: #620594;
-    width: 35vw;
+
+    width: 30vw;
     height: 100vh;
+    background: url(leftdiv.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0%;
+    margin: 0%;
 }
+
+
 #root-card {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     width: 65vw;
     height: 100vh;
@@ -28,8 +36,17 @@
     border-radius: 6px;
     border: 1px solid #00000021;
     margin: 5px;
-
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.125em;
+    text-align: left;
+    text-transform: capitalize;
 }
+
+
+
 
 .name {
     margin: 6px;
@@ -52,6 +69,13 @@
     margin: 5px;
     border-radius: 6px;
     border: 1px solid #00000021;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.125em;
+    text-align: left;
+
 
 }
 
@@ -62,9 +86,118 @@
     margin: 10px;
     border-radius: 6px;
     border: 1px solid #00000021;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.125em;
+    text-align: left;
+
+
+}
+
+.submitbtn {
+    width: 388px;
+    height: 44px;
+    border-radius: 6px;
+    border: 2px solid #00000021;
+    margin: 5px;
+
+    background-color: #220930;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: white;
+
+
 
 }
 
 #cvvName {
     margin-left: 45px;
+}
+
+.cardFront {
+
+
+    position: absolute;
+    top: 100px;
+    left: 230px;
+    color: white;
+    border-radius: 10px;
+    width: 447px;
+    height: 246px;
+
+
+
+    border: 1px solid;
+
+    border-image-source: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        linear-gradient(0deg, #000000, #000000);
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+    background: url(background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#ellipse1 {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#ellipse2 {
+    position: absolute;
+    top: 14%;
+    left: 25%;
+}
+
+
+
+
+#cardNo {
+    position: absolute;
+    color: white;
+    font-family: Inter;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0.18em;
+    top: 45%;
+    bottom: 50%;
+    left: 14%;
+    right: 10%;
+
+
+}
+
+#cardName {
+    position: absolute;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0.19em;
+    text-align: left;
+    left: 10%;
+    bottom: 5%;
+    text-transform: capitalize;
+
+}
+
+#expdate {
+    position: absolute;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.235em;
+    text-align: left;
+    right: 10%;
+    bottom: 5%;
 }
