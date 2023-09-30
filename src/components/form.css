@@ -259,3 +259,8 @@ text-align: left;
 color: #FFFFFF;
 
 }
+.toast-message{
+    font-size: 16px;
+  padding: 1rem 0.5rem;
+  
+}

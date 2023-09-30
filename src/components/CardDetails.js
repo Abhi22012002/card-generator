@@ -1,21 +1,23 @@
-import React, { useState,useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import "./form.css";
 
 
 function CardDetails() {
 
 
-    const inputmm=useRef(null);
-    const inputyy=useRef(null);
-    const inputcvv=useRef(null);
-    const inputcard=useRef(null);
-    
-    const [cardno,setcardno]=useState('0000 0000 0000 0000');
-    const [cardname,setcardname]=useState('Jane Appleseed');
-    const [expmm,setexpmm]=useState('MM');
-    const [expyy,setexpyy]=useState('YY');
-    const [cvv,setcvv]=useState('000');
-    const [errorMessage, setErrorMessage] = useState("");
+    const inputmm = useRef(null);
+    const inputyy = useRef(null);
+    const inputcvv = useRef(null);
+    const inputcard = useRef(null);
+
+    const [cardno, setcardno] = useState('0000 0000 0000 0000');
+    const [cardname, setcardname] = useState('Jane Appleseed');
+    const [expmm, setexpmm] = useState('MM');
+    const [expyy, setexpyy] = useState('YY');
+    const [cvv, setcvv] = useState('000');
+
 
     const [inputcardname, setnamedetails] = useState('');
     const handlecardname = (e) => {
@@ -27,108 +29,138 @@ function CardDetails() {
     const handlecardno = (e) => {
         let input = e.target.value.replace(/[^0-9]/g, "").replace(/\s/g, "").replace(/(\d{4})/g, "$1 ").trim();
         if (input !== e.target.value.replace(/\s/g, "").replace(/(\d{4})/g, "$1 ").trim()) {
+
+
+
+                       toast.warning("Only numeric characters are allowed.",{className:"toast-message"});
+
             
-            setErrorMessage("Only numeric characters are allowed.");
-            alert("Only numeric characters are allowed.");
+
+
         } else {
-           
-            setErrorMessage("");
+
+
 
             setnodetails(e.target.value);
+
         }
-       
-        
-        
+
+
     }
-    
+
 
     const [inputcardmm, setmmdetails] = useState('');
 
     const handlecardmm = (e) => {
         let input = e.target.value.replace(/[^0-9]/g, "")
         if (input !== e.target.value) {
-            
-            setErrorMessage("Only numeric characters are allowed.");
-            alert("Only numeric characters are allowed.");
+
+                       toast.warning("Only numeric characters are allowed.",{className:"toast-message"});
+
         } else {
-           
-            setErrorMessage("");
+
+
+
 
             setmmdetails(e.target.value);
+
         }
-        
-       
-        
-        
+
+
+
+
     }
     const [inputcardyy, setyydetails] = useState('');
     const handlecardyy = (e) => {
         let input = e.target.value.replace(/[^0-9]/g, "")
         if (input !== e.target.value) {
-            
-            setErrorMessage("Only numeric characters are allowed.");
-            alert("Only numeric characters are allowed.");
+
+                       toast.warning("Only numeric characters are allowed.",{className:"toast-message"});
+
         } else {
-           
-            setErrorMessage("");
+
+
 
             setyydetails(e.target.value);
         }
 
-       
+
     }
     const [inputcardcvv, setcardcvv] = useState('');
     const handlecardcvv = (e) => {
         let input = e.target.value.replace(/[^0-9]/g, "")
         if (input !== e.target.value) {
-            
-            setErrorMessage("Only numeric characters are allowed.");
-            alert("Only numeric characters are allowed.");
+                       toast.warning("Only numeric characters are allowed.",{className:"toast-message"});
+
         } else {
-           
-            setErrorMessage("");
+
+
 
             setcardcvv(e.target.value);
         }
 
 
-       
+
     }
 
 
-    useEffect(()=>{
-        if(inputcardno.length=='19')
-        {
-            
+    useEffect(() => {
+        if (inputcardno.length == '19') {
+
             inputmm.current.focus();
         }
 
-    },[inputcardno]);
+    }, [inputcardno]);
 
-    useEffect(()=>{
-        if(inputcardmm.length==2)
-        {
+    useEffect(() => {
+        if (inputcardmm.length == 2) {
             inputyy.current.focus();
         }
 
-    },[inputcardmm]);
-    useEffect(()=>{
-        if(inputcardyy.length==2)
-        {
+
+    }, [inputcardmm]);
+    useEffect(() => {
+        if (inputcardyy.length == 2) {
             inputcvv.current.focus();
         }
 
-    },[inputcardyy]);
 
-    const sub=(e)=>{
+    }, [inputcardyy]);
+
+    const sub = (e) => {
         e.preventDefault();
-        setcardno(inputcardno);
-        setcardname(inputcardname);
-        setexpmm(inputcardmm);
-        setexpyy(inputcardyy);
-        setcvv(inputcardcvv);
+        let regex = /^[a-zA-Z ]+$/;
+        if (!regex.test(inputcardname)) {
+            toast.warning("Please enter a valid name",{className:"toast-message"});
+            return false;
+        }
+        if (inputcardno.length < 19) {
+            toast.warning("Please enter a valid Card No",{className:"toast-message"});
+            return false;
+        }
+        if (inputcardmm > 12 || inputcardmm < 1) {
+            toast.warning("Please enter a valid Date Month",{className:"toast-message"});
 
-     
+            return false;
+        }
+        if (inputcardyy.length < 2) {
+            toast.warning("Please enter a valid Date Year",{className:"toast-message"});
+
+            return false;
+        }
+        if (inputcardcvv.length < 2) {
+            toast.warning("Please enter a valid Date",{className:"toast-message"});
+
+            return false;
+        }
+        setcardname(inputcardname);
+        setcvv(inputcardcvv);
+        setexpyy(inputcardyy);
+        setexpmm(inputcardmm);
+        setcardno(inputcardno);
+
+        toast.success(" Card Details saved Succesfully")
+
     }
 
 
@@ -136,6 +168,10 @@ function CardDetails() {
     return (
 
         <>
+        <ToastContainer
+         autoClose={2000} 
+         position="top-center"
+         />
 
             <div id="root">
                 <div id="left-div">
@@ -149,10 +185,10 @@ function CardDetails() {
                         <input
                             type="text"
                             className="input-no-name"
-                            required title="Please enter your name" 
+                            required title="Please enter your name"
                             name="card_name"
-                            
-                            id="card_name" 
+
+                            id="card_name"
                             onChange={handlecardname}
                             placeholder="e.g Jane Appleseed"
                             autoFocus>
@@ -163,12 +199,12 @@ function CardDetails() {
                         <br />
                         <input
                             type="tel"
-                            required 
+                            required
                             name="card_no"
                             id="card_no"
                             value={inputcardno.replace(/\s/g, "").replace(/(\d{4})/g, "$1 ").trim()}
                             maxLength="19"
-                            minLength="19"
+
                             onChange={handlecardno}
                             className="input-no-name"
                             placeholder="0000 0000 0000 0000"
@@ -186,7 +222,7 @@ function CardDetails() {
                             value={inputcardmm}
                             onChange={handlecardmm}
                             className="input-date"
-                            placeholder="MM" 
+                            placeholder="MM"
                             maxLength="2" >
 
                         </input>
@@ -199,7 +235,8 @@ function CardDetails() {
                             className="input-date"
                             placeholder="YY"
                             maxLength="2"
-                            >
+
+                        >
 
                         </input>
                         <input
@@ -210,7 +247,8 @@ function CardDetails() {
                             placeholder="CVV"
                             ref={inputcvv}
                             onChange={handlecardcvv}
-                            maxLength="3">
+                            maxLength="3"
+                        >
 
                         </input>
                         <br />
@@ -243,5 +281,5 @@ function CardDetails() {
 
     );
 }
- 
+
 export default CardDetails;
