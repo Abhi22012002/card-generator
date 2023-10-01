@@ -149,7 +149,7 @@ function CardDetails() {
             return false;
         }
         if (inputcardcvv.length < 2) {
-            toast.warning("Please enter a valid Date",{className:"toast-message"});
+            toast.warning("Please enter a valid CVV",{className:"toast-message"});
 
             return false;
         }
